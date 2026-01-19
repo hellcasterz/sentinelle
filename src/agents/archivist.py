@@ -1,7 +1,7 @@
 from typing import List, Dict, Any, Optional
 from qdrant_client import QdrantClient
 from qdrant_client.models import (
-    Distance, VectorParams, NamedVectorParams, PointStruct,
+    Distance, VectorParams, PointStruct,
     Filter, FieldCondition, MatchValue, MatchText, PayloadSchemaType, TextIndexParams
 )
 import uuid
@@ -25,9 +25,7 @@ def ensure_collections():
     if COLL_KB not in [col.name for col in c.get_collections().collections]:
         c.create_collection(
             collection_name=COLL_KB,
-            vectors=NamedVectorParams(
-                {"text": VectorParams(size=DIM_TEXT, distance=Distance.COSINE)}
-            )
+            vectors_config={"text": VectorParams(size=DIM_TEXT, distance=Distance.COSINE)}
         )
         c.create_payload_index(
             collection_name=COLL_KB,
@@ -40,9 +38,7 @@ def ensure_collections():
     if COLL_IMG not in [col.name for col in c.get_collections().collections]:
         c.create_collection(
             collection_name=COLL_IMG,
-            vectors=NamedVectorParams(
-                {"image": VectorParams(size=DIM_IMAGE, distance=Distance.COSINE)}
-            )
+            vectors_config={"image": VectorParams(size=DIM_IMAGE, distance=Distance.COSINE)}
         )
         # Optional: maintain captions/notes for hybrid
         c.create_payload_index(
@@ -56,9 +52,7 @@ def ensure_collections():
     if COLL_REP not in [col.name for col in c.get_collections().collections]:
         c.create_collection(
             collection_name=COLL_REP,
-            vectors=NamedVectorParams(
-                {"profile": VectorParams(size=DIM_TEXT, distance=Distance.COSINE)}
-            )
+            vectors_config={"profile": VectorParams(size=DIM_TEXT, distance=Distance.COSINE)}
         )
         c.create_payload_index(
             collection_name=COLL_REP,

@@ -2,7 +2,8 @@ from typing import List, Dict, Any, Optional
 from qdrant_client import QdrantClient
 from qdrant_client.models import (
     Distance, VectorParams, PointStruct,
-    Filter, FieldCondition, MatchValue, MatchText, PayloadSchemaType, TextIndexParams
+    Filter, FieldCondition, MatchValue, MatchText, PayloadSchemaType, 
+    TextIndexParams, TextIndexType, TokenizerType
 )
 import uuid
 
@@ -30,8 +31,7 @@ def ensure_collections():
         c.create_payload_index(
             collection_name=COLL_KB,
             field_name="text",
-            field_schema=PayloadSchemaType.TEXT,
-            params=TextIndexParams(tokenizer="word")
+            field_schema=TextIndexParams(type=TextIndexType.TEXT, tokenizer=TokenizerType.WORD)
         )
 
     # Toxic imagery (image vectors)
@@ -44,8 +44,7 @@ def ensure_collections():
         c.create_payload_index(
             collection_name=COLL_IMG,
             field_name="caption",
-            field_schema=PayloadSchemaType.TEXT,
-            params=TextIndexParams(tokenizer="word")
+            field_schema=TextIndexParams(type=TextIndexType.TEXT, tokenizer=TokenizerType.WORD)
         )
 
     # User reputation (text vector representing profile summary; plus payload with user_id, score)

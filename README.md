@@ -31,6 +31,7 @@ This MVP adds a minimal, working scaffold:
    ```bash
    python scripts/seed_qdrant.py
    ```
+   **Note:** On first run, the script will download ML models from HuggingFace (~200MB). This requires an internet connection and may take a few minutes.
 6. Run the UI:
    ```bash
    streamlit run app.py

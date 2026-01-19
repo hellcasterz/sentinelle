@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from src.agents.observer import process_input
 from src.agents.archivist import (
     ensure_collections, check_history, check_similarity_image, retrieve_text_context
@@ -8,8 +8,8 @@ from src.agents.judge import judge
 def run_pipeline(
     user_id: str,
     text: str = "",
-    image_bytes: bytes = None,
-    audio_bytes: bytes = None
+    image_bytes: Optional[bytes] = None,
+    audio_bytes: Optional[bytes] = None
 ) -> Dict[str, Any]:
     ensure_collections()
 

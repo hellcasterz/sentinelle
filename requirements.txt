@@ -1,0 +1,13 @@
+python-dotenv==1.0.1
+qdrant-client==1.9.1
+pydantic==2.8.2
+pytesseract==0.3.10
+Pillow==10.4.0
+opencv-python-headless==4.10.0.84
+sentence-transformers==3.0.1
+torch>=2.2.0
+faster-whisper==1.0.3
+langchain==0.2.12
+langgraph==0.2.18
+openai==1.51.2
+streamlit==1.39.0
